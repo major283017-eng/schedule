@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HR 排班系統 MVP</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">115 年 4-7 月</p>
+        <h1>HR 排班系統</h1>
+      </div>
+      <div class="actions">
+        <button id="generateBtn" type="button">產生班表</button>
+        <button id="csvBtn" type="button" class="secondary">匯出 Excel CSV</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel controls">
+        <div>
+          <label for="startDate">開始日期</label>
+          <input id="startDate" type="date" value="2026-04-01">
+        </div>
+        <div>
+          <label for="endDate">結束日期</label>
+          <input id="endDate" type="date" value="2026-07-31">
+        </div>
+        <div>
+          <label for="workdayDayStart">平日日班起始</label>
+          <select id="workdayDayStart"></select>
+        </div>
+        <div>
+          <label for="workdayNightStart">平日夜班起始</label>
+          <select id="workdayNightStart"></select>
+        </div>
+        <div>
+          <label for="holidayFullStart">假日全天起始</label>
+          <select id="holidayFullStart"></select>
+        </div>
+        <div>
+          <label for="holidayNightStart">假日夜班起始</label>
+          <select id="holidayNightStart"></select>
+        </div>
+      </section>
+
+      <section class="layout">
+        <aside class="panel">
+          <h2>規則</h2>
+          <dl class="rules">
+            <dt>採用版本</dt>
+            <dd>後面版本：平日 4/1 日班張國光、夜班黃建隆；假日 4/3 全天張志賢起始。</dd>
+            <dt>張志賢、周誌賢</dt>
+            <dd>只進入全天班輪值。</dd>
+            <dt>陳建緯</dt>
+            <dd>平日只排日班，假日只排夜班。</dd>
+            <dt>假日判斷</dt>
+            <dd>週六、週日，加上 115 年 4-7 月國定假日與補假。</dd>
+          </dl>
+        </aside>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>公平性統計</h2>
+            <span id="summaryText"></span>
+          </div>
+          <div class="table-wrap small">
+            <table id="statsTable">
+              <thead>
+                <tr>
+                  <th>人員</th>
+                  <th>日班</th>
+                  <th>夜班</th>
+                  <th>全天</th>
+                  <th>合計</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <h2>輪值表</h2>
+          <div class="legend">
+            <span><i class="dot workday"></i>平日</span>
+            <span><i class="dot holiday"></i>假日</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="scheduleTable">
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>星期</th>
+                <th>類型</th>
+                <th>日班</th>
+                <th>夜班</th>
+                <th>全天</th>
+                <th>假日名稱</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
